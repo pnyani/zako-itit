@@ -1,0 +1,12 @@
+services:
+  bot:
+    build: .
+    container_name: zako-itit-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - SQLITE_FILE=/app/data/issues.db
+      - ADMIN_IDS=${ADMIN_IDS:-}
+      - EMBED_PAGE_SIZE=${EMBED_PAGE_SIZE:-5}
+    volumes:
+      - ./data:/app/data

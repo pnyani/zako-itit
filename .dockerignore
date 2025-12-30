@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+data/*.db
+.env
+.git
+.gitignore
+*.md
+.vscode
