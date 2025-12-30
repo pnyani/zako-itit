@@ -12,7 +12,38 @@ A hybrid TypeScript + C Discord bot for issue tracking.
 - SQLite3 development libraries
 - C compiler (gcc/clang)
 
-## Installation
+## Docker
+
+```bash
+docker pull nyanni/zako-itit
+```
+
+### Docker Compose
+```yaml
+services:
+  bot:
+    image: nyanni/zako-itit
+    container_name: zako-itit-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - SQLITE_FILE=/app/data/issues.db
+      - ADMIN_IDS=${ADMIN_IDS:-}
+      - EMBED_PAGE_SIZE=${EMBED_PAGE_SIZE:-5}
+    volumes:
+      - ./data:/app/data
+```
+
+### Run with Docker
+```bash
+docker run -d \
+  --name zako-bot \
+  -e DISCORD_TOKEN=your_token \
+  -v ./data:/app/data \
+  nyanni/zako-itit
+```
+
+## Installation (Local)
 ```bash
 npm install
 npm run build
