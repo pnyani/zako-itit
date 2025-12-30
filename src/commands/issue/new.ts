@@ -1,0 +1,42 @@
+import {
+  ChatInputCommandInteraction,
+  ModalBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  ActionRowBuilder
+} from 'discord.js';
+
+export async function handleIssueNew(interaction: ChatInputCommandInteraction): Promise<void> {
+  const modal = new ModalBuilder()
+    .setCustomId('ISSUE_MODAL')
+    .setTitle('Create New Issue');
+
+  const nameInput = new TextInputBuilder()
+    .setCustomId('issue_name')
+    .setLabel('Issue Name')
+    .setStyle(TextInputStyle.Short)
+    .setRequired(true)
+    .setMaxLength(255);
+
+  const tagInput = new TextInputBuilder()
+    .setCustomId('issue_tag')
+    .setLabel('Tag (0=Bug, 1=Feature, 2=Enhancement)')
+    .setStyle(TextInputStyle.Short)
+    .setRequired(true)
+    .setMaxLength(1);
+
+  const detailInput = new TextInputBuilder()
+    .setCustomId('issue_detail')
+    .setLabel('Issue Detail')
+    .setStyle(TextInputStyle.Paragraph)
+    .setRequired(true)
+    .setMaxLength(2000);
+
+  const firstRow = new ActionRowBuilder<TextInputBuilder>().addComponents(nameInput);
+  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(tagInput);
+  const thirdRow = new ActionRowBuilder<TextInputBuilder>().addComponents(detailInput);
+
+  modal.addComponents(firstRow, secondRow, thirdRow);
+
+  await interaction.showModal(modal);
+}

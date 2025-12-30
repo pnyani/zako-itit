@@ -1,0 +1,27 @@
+{
+  "name": "zako-itit",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:native": "node-gyp rebuild",
+    "build:ts": "tsc",
+    "build": "npm run build:native && npm run build:ts",
+    "start": "node dist/index.js",
+    "dev": "npm run build && nodemon dist/index.js",
+    "clean": "rm -rf build dist"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "node-addon-api": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3",
+    "node-gyp": "^10.1.0",
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
