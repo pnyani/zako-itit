@@ -21,10 +21,10 @@ RUN npm ci --omit=dev
 
 FROM node:18-alpine
 
-RUN apk add --no-cache sqlite-libs
+RUN apk add --no-cache sqlite-libs su-exec
 
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
+    adduser -S nodejs -u 1001 -G nodejs
 
 WORKDIR /app
 
@@ -35,6 +35,6 @@ COPY package.json ./
 
 RUN mkdir -p /app/data && chown -R nodejs:nodejs /app
 
-USER nodejs
+ENTRYPOINT ["sh", "-c", "chown -R nodejs:nodejs /app/data 2>/dev/null || true; exec su-exec nodejs:nodejs \"$@\"", "--"]
 
 CMD ["node", "dist/index.js"]
