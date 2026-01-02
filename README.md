@@ -2,6 +2,19 @@
 
 A hybrid TypeScript + C Discord bot for issue tracking.
 
+## Table of Contents
+- [Tech Stack](#tech-stack)
+- [Requirements](#requirements)
+- [Docker](#docker)
+  - [Docker Compose](#docker-compose)
+  - [Run with Docker](#run-with-docker)
+- [Installation (Local)](#installation-local)
+- [Environment Variables](#environment-variables)
+- [Commands](#commands)
+- [Database Schema](#database-schema)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Tech Stack
 - Discord API: TypeScript with discord.js
 - Core Logic: C native addon (N-API)
@@ -94,6 +107,9 @@ CREATE TABLE IF NOT EXISTS zako (
   discord TEXT NOT NULL
 );
 ```
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
 
 ## License
 MIT - pnyani
