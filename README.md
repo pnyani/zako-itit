@@ -72,6 +72,9 @@ npm run build
 
 ## Commands
 
+### `/status`
+Displays the status of bots and servers.
+
 ### `/ping`
 Check if the bot is alive.
 
