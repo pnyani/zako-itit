@@ -108,16 +108,21 @@ async function main() {
     console.error('Discord client error:', error);
   });
 
-  function gracefulShutdown() {
+  client.on('shardDisconnect', (event, id) => {
+    console.error(`Shard ${id} disconnected with code ${event.code} and reason: ${event.reason}`);
+    shutdown(1);
+  });
+
+  function shutdown(exitCode: number) {
     console.log('Shutting down...');
     client.destroy();
     native.closeDatabase();
     console.log('Database connection closed');
-    process.exit(0);
+    process.exit(exitCode);
   }
 
-  process.on('SIGINT', gracefulShutdown);
-  process.on('SIGTERM', gracefulShutdown);
+  process.on('SIGINT', () => shutdown(0));
+  process.on('SIGTERM', () => shutdown(0));
 
   await client.login(config.discordToken);
 }
