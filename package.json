@@ -1,6 +1,6 @@
 {
   "name": "zako-itit",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "main": "dist/index.js",
   "scripts": {
     "build:native": "node-gyp rebuild",
